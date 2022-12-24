@@ -74,9 +74,9 @@ public class PlayerController : MonoBehaviour
 
         lookRotation = Quaternion.LookRotation(direction);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.001f);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.001f);
         //timeCount += Time.fixedDeltaTime;
-        //transform.rotation = lookRotation;
+        transform.rotation = lookRotation;
 
 
         //m_MousePosition = Input.mousePosition;

@@ -35,6 +35,7 @@ public class Shooting : MonoBehaviour
     }
     private void Fire()
     {
+        projectileSpawn.transform.position = new Vector3(projectileSpawn.transform.position.x, 10, projectileSpawn.transform.position.z);
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
         Physics.IgnoreCollision(projectile.GetComponent<Collider>(), Weapon.GetComponent<Collider>());
         projectileRB = projectile.GetComponent<Rigidbody>();
@@ -44,6 +45,7 @@ public class Shooting : MonoBehaviour
         // Vector3 rotation = projectile.transform.rotation.eulerAngles;
         // projectile.transform.rotation = Quaternion.Euler(rotation.x, transform.eulerAngles.y, rotation.z);
         projectileRB.velocity = ShipRb.velocity;
+        
         projectileRB.AddForce(projectileSpawn.up * projectileSpeed, ForceMode.Impulse);
 
         coroutine = DestroyProjectile(projectile, lifeTime);
