@@ -38,9 +38,9 @@ public class PlayerController : MonoBehaviour
     void OnGUI()
     {
         //GUI.Label(new Rect(0, 0, 1000, 100), "position: " + transform.position.ToString());
-        GUI.Label(new Rect(0, 30, 1000, 100), "worldPosition " + worldPosition.ToString());
-        GUI.Label(new Rect(0, 40, 1000, 100), "Look rotation: " + lookRotation.eulerAngles.ToString());
-        GUI.Label(new Rect(0, 50, 1000, 100), "transform.rotation: " + transform.rotation.eulerAngles.ToString());
+        GUI.Label(new Rect(0, 40, 1000, 100), "worldPosition " + worldPosition.ToString());
+        GUI.Label(new Rect(0, 50, 1000, 100), "Look rotation: " + lookRotation.eulerAngles.ToString());
+        GUI.Label(new Rect(0, 60, 1000, 100), "transform.rotation: " + transform.rotation.eulerAngles.ToString());
         //
     }
     private void FixedUpdate()

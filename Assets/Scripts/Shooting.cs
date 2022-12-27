@@ -12,6 +12,8 @@ public class Shooting : MonoBehaviour
     private Transform Weapon;
     private Rigidbody ShipRb;
     private Rigidbody projectileRB;
+
+    private float testTime=0;
     void Start()
     {
         Weapon = projectileSpawn.parent;
@@ -24,13 +26,14 @@ public class Shooting : MonoBehaviour
         {
             Fire();
         }
+        testTime += Time.deltaTime;
     }
     void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 1000, 100), "Weapon: " + ShipRb.velocity.ToString());
         //GUI.Label(new Rect(0, 10, 1000, 100), "velocity: " + projectileRB.velocity.ToString());
         GUI.Label(new Rect(0, 20, 1000, 100), "Speed: " + ShipRb.velocity.magnitude.ToString());
-        //GUI.Label(new Rect(0, 30, 1000, 100), "rotation: " + transform.rotation.ToString());
+        GUI.Label(new Rect(0, 30, 1000, 100), "Time " + testTime.ToString());
         //
     }
     private void Fire()
