@@ -38,10 +38,13 @@ public class CameraMoving : MonoBehaviour
     }
     void LateUpdate()
     {
-        float newXPosition = Player.transform.position.x;
-        float newZPosition = Player.transform.position.z;
+        if (Player != null)
+        {
+            float newXPosition = Player.transform.position.x;
+            float newZPosition = Player.transform.position.z;
 
-        transform.position = new Vector3(newXPosition, transform.position.y, newZPosition);
+            transform.position = new Vector3(newXPosition, transform.position.y, newZPosition);
+        }
     }
 }
 

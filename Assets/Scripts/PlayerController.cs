@@ -12,28 +12,28 @@ public class PlayerController : MonoBehaviour
     private Vector3 mouse;
     private Ray castPoint;
     private Vector3 worldPosition;
-    private float timeCount = 0.0f;
+    //private float timeCount = 0.0f;
 
 
-    [SerializeField]
-    private float ForwardPower = 100f;
+    //[SerializeField]
+    //private float ForwardPower = 100f;
     [SerializeField]
     private float RightPower = 100f;
-    [SerializeField]
-    private float RotatePower = 0.1f;
+    //[SerializeField]
+    //private float RotatePower = 0.1f;
    
     private Camera cam;
 
 
-    Quaternion m_MyQuaternion;
-    float m_Speed = 1.0f;
+    //Quaternion m_MyQuaternion;
+    //float m_Speed = 1.0f;
     Vector3 m_MousePosition;
 
     void Start()
     {
         cam = Camera.main;
         ship_rigidbody = GetComponent<Rigidbody>();
-        m_MyQuaternion = new Quaternion();
+        //m_MyQuaternion = new Quaternion();
     }
     void OnGUI()
     {
