@@ -46,7 +46,7 @@ public class TrashGenerator : MonoBehaviour
             Tools.ResizeGameObjectByCollider(asteroid, size);
 
             Health hp = asteroid.GetComponent<Health>();
-            hp.setMaximum(50f * size);
+            hp.Maximum=(50f * size);
             Rigidbody rb = asteroid.GetComponent<Rigidbody>();
             rb.mass = size * 1000;
            // rb.AddForce(transform.right * Random.Range(-1000f,1000f), ForceMode.Impulse);

@@ -6,7 +6,6 @@ public class Damage : MonoBehaviour
 {
     // Start is called before the first frame update
     public float damage = 0.0f;
-    public GameObject target;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -14,7 +13,7 @@ public class Damage : MonoBehaviour
         if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody thisRB) && collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody targetRB))
         {   
             float totalMass = thisRB.mass + targetRB.mass;
-            float totalDmg = collision.relativeVelocity.magnitude * (totalMass) / 2 / 100;
+            float totalDmg = collision.relativeVelocity.magnitude * (totalMass) / 2 / 1000;
            
             if (gameObject.TryGetComponent<Health>(out Health thisHealth))
             {

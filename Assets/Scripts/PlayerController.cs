@@ -14,15 +14,20 @@ public class PlayerController : MonoBehaviour
     private Vector3 worldPosition;
     //private float timeCount = 0.0f;
 
-
-    //[SerializeField]
-    //private float ForwardPower = 100f;
+    private Vector3 force;
+    [SerializeField]
+    private float ForwardPower = 100f;
     [SerializeField]
     private float RightPower = 100f;
     //[SerializeField]
     //private float RotatePower = 0.1f;
    
     private Camera cam;
+    public GameObject FlameMoveForward;
+    public GameObject FlameMoveBack1;
+    public GameObject FlameMoveBack2;
+    public GameObject FlameMoveLeft;
+    public GameObject FlameMoveRight;
 
 
     //Quaternion m_MyQuaternion;
@@ -41,12 +46,42 @@ public class PlayerController : MonoBehaviour
         GUI.Label(new Rect(0, 40, 1000, 100), "worldPosition " + worldPosition.ToString());
         GUI.Label(new Rect(0, 50, 1000, 100), "Look rotation: " + lookRotation.eulerAngles.ToString());
         GUI.Label(new Rect(0, 60, 1000, 100), "transform.rotation: " + transform.rotation.eulerAngles.ToString());
+        GUI.Label(new Rect(0, 70, 1000, 100), "force vector: " + force.ToString());
+        
         //
+    }
+    private void Update()
+    {
+        if (Input.GetAxis("Vertical") > 0)
+            FlameMoveForward.SetActive(true);
+        else
+            FlameMoveForward.SetActive(false);
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            FlameMoveBack1.SetActive(true);
+            FlameMoveBack2.SetActive(true);
+        }
+        else
+        {
+            FlameMoveBack1.SetActive(false);
+            FlameMoveBack2.SetActive(false);
+        }
+        if (Input.GetAxis("Horizontal") < 0)
+            FlameMoveLeft.SetActive(true);
+        else
+            FlameMoveLeft.SetActive(false);
+        if (Input.GetAxis("Horizontal") > 0)
+            FlameMoveRight.SetActive(true);
+        else
+            FlameMoveRight.SetActive(false);
+
     }
     private void FixedUpdate()
     {
-        ship_rigidbody.AddForce(transform.right* Input.GetAxis("Horizontal") * RightPower * Time.fixedDeltaTime);
-        ship_rigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * RightPower * Time.fixedDeltaTime);
+        //ship_rigidbody.AddForce(transform.right* Input.GetAxis("Horizontal") * RightPower * Time.fixedDeltaTime);
+        // ship_rigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * ForwardPower * Time.fixedDeltaTime);
+        force = (transform.right * Input.GetAxis("Horizontal") * RightPower + transform.forward * Input.GetAxis("Vertical") * ForwardPower) * Time.fixedDeltaTime;
+        ship_rigidbody.AddForce(force);
         //
         //mouse = Input.mousePosition;
         //castPoint = cam.ScreenPointToRay(mouse);
@@ -61,8 +96,8 @@ public class PlayerController : MonoBehaviour
         //timeCount += Time.fixedDeltaTime;
         //transform.rotation = lookRotation;
         //
-       // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-       // transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+        // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
         mouse = Input.mousePosition;
         //castPoint = cam.ScreenPointToRay(mouse);

@@ -7,6 +7,7 @@ public class BackgroundOffset : MonoBehaviour
     private MeshRenderer mesh;
     private Material mat;
     private string textureName;
+    public float deep=4;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,8 @@ public class BackgroundOffset : MonoBehaviour
     void Update()
     {
         Vector2 offset = mat.mainTextureOffset;
-        offset.x = transform.position.x/ transform.localScale.x;
-        offset.y = transform.position.z / transform.localScale.y;
+        offset.x = transform.position.x/ transform.localScale.x/deep;
+        offset.y = transform.position.z / transform.localScale.y / deep;
         mat.mainTextureOffset = offset;
  
         
