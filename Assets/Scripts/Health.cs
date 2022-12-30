@@ -8,11 +8,26 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float maximum = 50f;
     [SerializeField]
-    private float Current = 0.0f;
+    private float current = 0.0f;
+
+    public float Current 
+    {
+        get => current;
+        set {
+            current = value;
+            if (current <= 0)
+            {
+                ObjectDeath();
+            }
+            if (current >= Maximum)
+                current = Maximum;
+        }
+    }
+
 
     public float Maximum
     {
-        get => maximum;    // get method
+        get => maximum;    
         set
         {
             if (value > 0)
@@ -20,11 +35,14 @@ public class Health : MonoBehaviour
                 maximum = value;
                 Current = value;
             }
-        }  // set method
+            else
+                ObjectDeath();
+        } 
     }
     public float Regen = 0.0f;
     private GameObject explosion;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
 
@@ -32,7 +50,7 @@ public class Health : MonoBehaviour
             Current = Maximum;
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         if (Current < Maximum)
@@ -41,23 +59,10 @@ public class Health : MonoBehaviour
     public void decrease(float value)
     {
         Current -= value;
-        if (Current <= 0)
-        {
-            Debug.Log("object destroyed" + gameObject.name);
-            GameObject explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
-            explosion.transform.localScale*= 0.8f * Tools.GetMaxSizeParameterOfGameObjectByCollider(gameObject);
-            Destroy(explosion, 2);
-            Destroy(gameObject);
-
-        }
-
     }
     public void increase(float value)
     {
         Current += value;
-        Debug.Log("Current health " + Current.ToString());
-        if (Current >= Maximum)
-            Current = Maximum;
     }
     public void increaseMaximum(float value)
     {
@@ -68,6 +73,15 @@ public class Health : MonoBehaviour
         Maximum -= value;
         if (Maximum <= 0)
             Destroy(gameObject);
+    }
+   
+    private void ObjectDeath()
+    //should be rework later
+    {
+        GameObject explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+        explosion.transform.localScale *= 0.8f * Tools.GetMaxSizeParameterOfGameObjectByCollider(gameObject);
+        Destroy(explosion, 2);
+        Destroy(gameObject);
     }
 }
   

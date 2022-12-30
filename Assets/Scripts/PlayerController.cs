@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //ship_rigidbody.AddForce(transform.right* Input.GetAxis("Horizontal") * RightPower * Time.fixedDeltaTime);
-        // ship_rigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * ForwardPower * Time.fixedDeltaTime);
+        //ship_rigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * ForwardPower * Time.fixedDeltaTime);
         force = (transform.right * Input.GetAxis("Horizontal") * RightPower + transform.forward * Input.GetAxis("Vertical") * ForwardPower) * Time.fixedDeltaTime;
         ship_rigidbody.AddForce(force);
         //

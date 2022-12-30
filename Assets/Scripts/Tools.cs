@@ -21,7 +21,7 @@ public static class Tools
     {
         Collider col = obj.GetComponent<Collider>();
         if (col != null)
-            return Mathf.Max(col.bounds.size.x, col.bounds.size.z);
+            return Mathf.Max(col.bounds.size.x, col.bounds.size.y, col.bounds.size.z);
         else
         {
             Debug.LogError("No collider in object " + obj.name);

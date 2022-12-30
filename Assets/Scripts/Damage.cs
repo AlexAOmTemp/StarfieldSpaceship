@@ -23,10 +23,8 @@ public class Damage : MonoBehaviour
             {
                 targetHealth.decrease(totalDmg * thisRB.mass / totalMass);
             }
-            Debug.Log("collision between " + gameObject.name + " mass:" + thisRB.mass + " get:" + totalDmg * targetRB.mass / totalMass
-                       + "\nand "+ collision.gameObject.name + " mass:" + targetRB.mass + " get:" + totalDmg * thisRB.mass / totalMass);
-           
-
+            //Debug.Log("collision between " + gameObject.name + " mass:" + thisRB.mass + " get:" + totalDmg * targetRB.mass / totalMass
+            //           + "\nand "+ collision.gameObject.name + " mass:" + targetRB.mass + " get:" + totalDmg * thisRB.mass / totalMass);
         }
         //bullet damage
         if (collision.gameObject.TryGetComponent<Health>(out Health tHealth)&& damage>0.001f )

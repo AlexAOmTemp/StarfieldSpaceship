@@ -6,14 +6,15 @@ public class TrashGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
     public Vector2 TrashFieldSize= new Vector2(500,500);
-    public GameObject AsteroidPrefab;
+    public GameObject[] TrashPrefabs;
 
+    public GameObject TrashHierarhyPlace;
     private int trashAmount;
     private float maxTrashObjectSize=5;
     void Start()
     {
         Random.InitState(System.DateTime.Now.Millisecond);
-
+        
         Vector2 TrashFieldStartPosition = -TrashFieldSize / 2;
         Vector2 TrashFieldFinishPosition = TrashFieldSize / 2;
         //split the field into cells
@@ -41,7 +42,12 @@ public class TrashGenerator : MonoBehaviour
             float offsetY = Random.Range(-cellSize / 2, cellSize / 2);
             Vector3 position = new Vector3(positions[it].x+ offsetX, 10f, positions[it].y+ offsetY);
 
-            GameObject asteroid = Instantiate(AsteroidPrefab, position, new Quaternion(0, 0, 0, 0));
+            int obj = Random.Range(0, TrashPrefabs.Length);
+            GameObject asteroid = Instantiate(TrashPrefabs[obj], position, Quaternion.identity) as GameObject;
+            asteroid.transform.parent = TrashHierarhyPlace.transform;
+
+
+            //GameObject asteroid = Instantiate(AsteroidPrefab, position, new Quaternion(0, 0, 0, 0));
             float size = Random.Range(0.5f, maxTrashObjectSize);
             Tools.ResizeGameObjectByCollider(asteroid, size);
 

@@ -20,7 +20,7 @@ public class CameraMoving : MonoBehaviour
         //GUI.Label(new Rect(0, 40, 1000, 100), Player.transform.position.ToString());
         //GUI.Label(new Rect(0, 50, 1000, 100), transform.position.ToString());
     }
-    // Update is called once per frame
+   
     void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
